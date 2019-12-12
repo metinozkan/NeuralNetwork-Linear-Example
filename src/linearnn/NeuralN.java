@@ -26,8 +26,11 @@ public class NeuralN {
     private static final File file = new File("Data.txt");
     
     public void Training() throws FileNotFoundException{
+        //created neural network with 2 input and 1 output 
         NeuralNetwork neuralN=new Perceptron (2,1);
+        //Dataset is entering to neural network
         neuralN.learn(eDataSet());
+        //save trained network
         neuralN.save("trainedN.nnet");
         System.out.println("training completed");
     }
@@ -35,8 +38,7 @@ public class NeuralN {
 
 
      public DataSet eDataSet() throws FileNotFoundException{
-    
-            
+            //create Data Set
             Scanner read =new Scanner (file);
             DataSet training =new DataSet(2,1);
             while (read.hasNextDouble()){
@@ -50,7 +52,7 @@ public class NeuralN {
      
      
      public double[] Test (double x,double y){
-         
+         //doing trained network test
          NeuralNetwork neuralN=NeuralNetwork.createFromFile("trainedN.nnet");
          neuralN.setInput(x,y);
          neuralN.calculate();
